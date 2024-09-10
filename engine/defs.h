@@ -294,7 +294,7 @@ enum CASTLING_RIGHTS
     BLACK_QUEEN_CASTLE = 8,
 };
 
-enum GenTypes
+enum GenType
 {
     CAPTURE,
     NOISY,

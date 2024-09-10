@@ -15,11 +15,6 @@ void MoveList::insert(uint8_t from, uint8_t to, uint8_t move_flag, uint16_t valu
     moves[count++] = OrderedMove(from, to, move_flag, value);
 }
 
-uint8_t MoveList::size() const
-{
-    return count;
-}
-
 std::string MoveList::to_string()
 {
     std::string movelist_string = moves[0].to_string();

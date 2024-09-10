@@ -13,5 +13,9 @@
 
 int main()
 {
+    init_leapers_attacks();
+    init_sliders_attacks();
+    init_zobrist_tables();
+
     return 0;
 }

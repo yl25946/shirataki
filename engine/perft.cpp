@@ -1,6 +1,6 @@
 #include "perft.h"
 
-uint64_t perft(Board &board, uint8_t depth)
+uint64_t perft(const Board &board, uint8_t depth)
 {
 
     if (depth == 0)
@@ -8,8 +8,6 @@ uint64_t perft(Board &board, uint8_t depth)
 
     MoveList move_list;
     uint64_t nodes = 0;
-
-    generate_moves(board, move_list);
 
     for (int i = 0; i < move_list.count; ++i)
     {
@@ -23,7 +21,7 @@ uint64_t perft(Board &board, uint8_t depth)
     return nodes;
 }
 
-uint64_t perft_debug(Board &board, uint8_t depth, uint8_t start_depth)
+uint64_t perft_debug(const Board &board, uint8_t depth, uint8_t start_depth)
 {
     if (depth == 0)
     {
@@ -34,15 +32,12 @@ uint64_t perft_debug(Board &board, uint8_t depth, uint8_t start_depth)
     }
 
     uint64_t total_nodes = 0;
-    MoveList move_list;
-
-    generate_moves(board, move_list);
 
     // TranspositionTable tt(8);
 
     // move_list.score(board, tt);
 
-    MovePicker move_picker(move_list);
+    MovePicker<GenType::ALL> move_picker(board);
 
     while (move_picker.has_next())
     {

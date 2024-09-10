@@ -9,7 +9,7 @@ public:
     std::array<OrderedMove, 256> moves;
     uint8_t count = 0;
 
-    uint8_t size() const;
+    inline uint8_t size() const { return count; };
 
     // MoveList();
 

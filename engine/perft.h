@@ -2,6 +2,7 @@
 
 #include "defs.h"
 #include "movegen.h"
+#include "movepick.h"
 
 void perft_driver(const std::string &fen, uint8_t depth);
 
