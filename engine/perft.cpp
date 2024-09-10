@@ -1,6 +1,6 @@
 #include "perft.h"
 
-uint64_t perft(const Board &board, uint8_t depth)
+uint64_t perft(Board &board, uint8_t depth)
 {
 
     if (depth == 0)
@@ -21,7 +21,7 @@ uint64_t perft(const Board &board, uint8_t depth)
     return nodes;
 }
 
-uint64_t perft_debug(const Board &board, uint8_t depth, uint8_t start_depth)
+uint64_t perft_debug(Board &board, uint8_t depth, uint8_t start_depth)
 {
     if (depth == 0)
     {

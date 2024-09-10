@@ -115,19 +115,28 @@ void UCI_loop()
             // now that we've called go, we can increase the age
             ++threads.options.age;
 
-            // implements the go infinite command
-            if (!line.compare(0, 11, "go infinite"))
-            {
-                Time time("go depth 255");
+            for (Move move : move_list)
+                board.make_move(move);
 
-                threads.go(board, move_list, time);
-            }
-            else
-            {
-                Time time(line);
+            MovePicker<GenType::ALL> movepicker(board);
 
-                threads.go(board, move_list, time);
-            }
+            uint64_t num_legal_moves = movepicker.legal_moves.size();
+
+            std::cout << "bestmove " << movepicker.legal_moves[random_uint64() % num_legal_moves].to_string() << " " << std::endl;
+
+            // // implements the go infinite command
+            // if (!line.compare(0, 11, "go infinite"))
+            // {
+            //     Time time("go depth 255");
+
+            //     threads.go(board, move_list, time);
+            // }
+            // else
+            // {
+            //     Time time(line);
+
+            //     threads.go(board, move_list, time);
+            // }
         }
         else if (!line.compare(0, 4, "stop"))
         {
@@ -173,22 +182,22 @@ void UCI_loop()
             perft_driver(board.fen(), depth);
         }
 
-        else if (!line.compare(0, 4, "eval"))
-        {
-            for (Move move : move_list)
-                board.make_move(move);
+        // else if (!line.compare(0, 4, "eval"))
+        // {
+        //     for (Move move : move_list)
+        //         board.make_move(move);
 
-            print_eval(board);
-        }
+        //     print_eval(board);
+        // }
 
-        else if (!line.compare(0, 25, "setoption name Hash value"))
-        {
-            threads.resize_tt(std::stoi(line.substr(26)));
-        }
-        else if (!line.compare(0, 28, "setoption name Threads value"))
-        {
-            threads.resize(std::stoi(line.substr(29)));
-        }
+        // else if (!line.compare(0, 25, "setoption name Hash value"))
+        // {
+        //     threads.resize_tt(std::stoi(line.substr(26)));
+        // }
+        // else if (!line.compare(0, 28, "setoption name Threads value"))
+        // {
+        //     threads.resize(std::stoi(line.substr(29)));
+        // }
         else if (!line.compare(0, 10, "ucinewgame"))
         {
             threads.terminate();
@@ -196,10 +205,10 @@ void UCI_loop()
         }
         else if (!line.compare(0, 3, "uci"))
         {
-            std::cout << "id name Spaghet BologNNese 1.0\n"
+            std::cout << "id name Shirataki\n"
                       << "id author Li Ying\n"
-                      << "option name Hash type spin default 16 min 1 max " << MAX_HASH << "\n"
-                      << "option name Threads type spin default 1 min 1 max " << MAX_THREADS << "\n"
+                      //   << "option name Hash type spin default 16 min 1 max " << MAX_HASH << "\n"
+                      //   << "option name Threads type spin default 1 min 1 max " << MAX_THREADS << "\n"
                       << "uciok" << std::endl;
         }
         else if (!line.compare(0, 4, "quit"))

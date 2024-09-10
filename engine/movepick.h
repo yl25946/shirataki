@@ -7,9 +7,9 @@
 template <GenType gen_type>
 class MovePicker
 {
+public:
     MoveList legal_moves;
 
-public:
     MovePicker(const Board &board);
 
     inline bool has_next() { legal_moves.size() != 0; }

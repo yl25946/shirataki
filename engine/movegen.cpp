@@ -12,7 +12,7 @@ void generate_promotions(uint8_t from_square, uint8_t promotion_square, bool cap
         move_list.insert(from_square, promotion_square, flag_it + move_flag_constant);
 }
 
-void generate_pawn_moves(Board &board, MoveList &move_list)
+void generate_pawn_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -198,7 +198,7 @@ void generate_pawn_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_pawn_capture_moves(Board &board, MoveList &move_list)
+void generate_pawn_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -322,7 +322,7 @@ void generate_pawn_capture_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_knight_moves(Board &board, MoveList &move_list)
+void generate_knight_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -352,7 +352,7 @@ void generate_knight_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_knight_capture_moves(Board &board, MoveList &move_list)
+void generate_knight_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -384,7 +384,7 @@ void generate_knight_capture_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_bishop_moves(Board &board, MoveList &move_list)
+void generate_bishop_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -415,7 +415,7 @@ void generate_bishop_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_bishop_capture_moves(Board &board, MoveList &move_list)
+void generate_bishop_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -448,7 +448,7 @@ void generate_bishop_capture_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_rook_moves(Board &board, MoveList &move_list)
+void generate_rook_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -479,7 +479,7 @@ void generate_rook_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_rook_capture_moves(Board &board, MoveList &move_list)
+void generate_rook_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -512,7 +512,7 @@ void generate_rook_capture_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_queen_moves(Board &board, MoveList &move_list)
+void generate_queen_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -543,7 +543,7 @@ void generate_queen_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_queen_capture_moves(Board &board, MoveList &move_list)
+void generate_queen_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -577,7 +577,7 @@ void generate_queen_capture_moves(Board &board, MoveList &move_list)
 }
 
 // generate castling separately
-void generate_sliding_king_moves(Board &board, MoveList &move_list)
+void generate_sliding_king_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -608,7 +608,7 @@ void generate_sliding_king_moves(Board &board, MoveList &move_list)
 }
 
 // generate castling separately
-void generate_sliding_king_capture_moves(Board &board, MoveList &move_list)
+void generate_sliding_king_capture_moves(const Board &board, MoveList &move_list)
 {
     uint8_t source_square;
     uint8_t target_square;
@@ -640,7 +640,7 @@ void generate_sliding_king_capture_moves(Board &board, MoveList &move_list)
     }
 }
 
-void generate_castling_moves(Board &board, MoveList &move_list)
+void generate_castling_moves(const Board &board, MoveList &move_list)
 {
     uint64_t blocking_pieces = board.blockers();
 
@@ -712,7 +712,7 @@ void generate_queen_promotions(const Board &board, MoveList &move_list)
     }
 }
 
-void generate_moves(Board &board, MoveList &move_list)
+void generate_moves(const Board &board, MoveList &move_list)
 {
     generate_pawn_moves(board, move_list);
     generate_knight_moves(board, move_list);
@@ -723,7 +723,7 @@ void generate_moves(Board &board, MoveList &move_list)
     generate_castling_moves(board, move_list);
 }
 
-void generate_capture_moves(Board &board, MoveList &move_list)
+void generate_capture_moves(const Board &board, MoveList &move_list)
 {
     generate_pawn_capture_moves(board, move_list);
     generate_knight_capture_moves(board, move_list);

@@ -17,5 +17,7 @@ int main()
     init_sliders_attacks();
     init_zobrist_tables();
 
+    UCI_loop();
+
     return 0;
 }

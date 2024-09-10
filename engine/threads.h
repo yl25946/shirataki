@@ -18,7 +18,7 @@ public:
 
     ThreadManager() {}
 
-    void go(Board &board, std::vector<Move> &move_list, Time &time);
+    // void go(Board &board, std::vector<Move> &move_list, Time &time);
     // clears thread data and resizes to new number of threads
     void resize(int new_thread_count);
     void ucinewgame()

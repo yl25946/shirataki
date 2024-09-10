@@ -7,6 +7,7 @@
 #include "search.h"
 #include "time.h"
 #include "perft.h"
+#include "movepick.h"
 #include "threads.h"
 class ThreadManger;
 
