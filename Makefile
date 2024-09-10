@@ -166,7 +166,7 @@ endif
 # Add network name and Evalfile
 CXXFLAGS += -DNETWORK_NAME=\"$(NETWORK_NAME)\" -DEVALFILE=\"$(EVALFILE)\"
 
-SOURCES := $(wildcard src/*.cpp)
+SOURCES := $(wildcard engine/*.cpp)
 OBJECTS := $(patsubst %.cpp,$(TMPDIR)/%.o,$(SOURCES))
 ifeq ($(OS), Windows_NT)
 	DEPENDS := $(patsubst %.cpp,$(TMPDIR)\%.d,$(SOURCES))
@@ -177,9 +177,7 @@ EXE	    := $(NAME)$(SUFFIX)
 
 all: $(TARGET)
 clean:
-	@$(CLEAN) *.o  $(DEPENDS) *.d $(EXE) 2> $(NULL) || $(NOOP)
-	@rmdir $(TMPDIR)\src 2> $(NULL) || $(NOOP)
-	@rmdir $(TMPDIR) 2> $(NULL) || $(NOOP)
+	rm -rf $(TMPDIR) $(EXE)
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(NATIVE) -MMD -MP -o $(EXE) $^ $(FLAGS)
@@ -188,7 +186,7 @@ $(TMPDIR)/%.o: %.cpp | $(TMPDIR)
 	$(CXX) $(CXXFLAGS) $(NATIVE) -MMD -MP -c $< -o $@ $(FLAGS)
 
 $(TMPDIR):
-	$(MKDIR) "$(TMPDIR)" "$(TMPDIR)/src"
+	$(MKDIR) "$(TMPDIR)" "$(TMPDIR)/engine"
 
 -include $(DEPENDS)
 
